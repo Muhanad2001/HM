@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MH Instagram Manager Pro</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#071512;color:#f4f8f5;font-family:Arial,"Tahoma",sans-serif}
+button,input,select,textarea{font:inherit}.app{min-height:100vh;display:flex;background:radial-gradient(circle at 70% 35%,#123d31 0,#071512 55%,#050b09 100%)}
+.sidebar{width:275px;background:rgba(10,24,20,.93);border-left:1px solid rgba(110,255,190,.12);padding:24px;position:fixed;right:0;top:0;bottom:0;z-index:4}
+.brand{display:flex;gap:12px;align-items:center;margin-bottom:30px}.brandmark{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,#b7a45c,#111a14);display:grid;place-items:center;color:#fff;font-weight:900;font-size:20px}.brand h2{font-size:18px;margin:0}.brand small{color:#8fa69d}
+.nav{display:grid;gap:7px}.nav button{border:0;background:transparent;color:#9db0a8;padding:13px 15px;border-radius:12px;text-align:right;cursor:pointer}.nav button.active,.nav button:hover{background:rgba(47,221,146,.14);color:#fff;box-shadow:inset 3px 0 #42e99a}
+.sidecard{margin-top:24px;border:1px solid rgba(105,255,190,.13);background:rgba(18,43,35,.75);border-radius:18px;padding:17px}.sidecard h3{margin:0 0 12px;font-size:14px}.switchrow{display:flex;justify-content:space-between;align-items:center;margin:12px 0;color:#b7c8c0;font-size:13px}
+.switch{width:42px;height:23px;background:#37473f;border-radius:30px;position:relative;cursor:pointer}.switch.on{background:#2fe390}.switch i{position:absolute;width:17px;height:17px;background:#fff;border-radius:50%;top:3px;right:3px}.switch.on i{right:22px}
+.main{margin-right:275px;flex:1;padding:22px 30px;min-width:0}.topbar{height:66px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.accounts{display:flex;gap:8px;overflow:auto}.account{border:1px solid rgba(110,255,190,.13);background:rgba(14,32,27,.8);border-radius:14px;padding:10px 16px;white-space:nowrap;color:#c6d1cc}.account.active{border-color:#27e58d;box-shadow:0 0 25px rgba(39,229,141,.12)}.account span{color:#36e995;margin-left:7px}
+.top-actions{display:flex;gap:9px}.pill{border:1px solid #263c34;background:#11231d;color:#d9e2de;border-radius:13px;padding:11px 15px}.primary{background:#2fe390;color:#06120d;border:0;border-radius:12px;padding:11px 17px;font-weight:700;cursor:pointer}.ghost{background:#14251f;color:#d9e2de;border:1px solid #284139;border-radius:12px;padding:11px 17px;cursor:pointer}
+.page{display:none}.page.active{display:block}.heading{display:flex;align-items:center;justify-content:space-between;margin:12px 0 18px}.heading h1{font-size:25px;margin:0}.muted{color:#849890}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat{background:rgba(15,31,26,.86);border:1px solid rgba(110,255,190,.11);border-radius:16px;padding:18px}.stat .n{font-size:28px;font-weight:800;margin-top:8px}.layout{display:grid;grid-template-columns:300px 1fr;gap:18px}.panel{background:rgba(13,29,24,.88);border:1px solid rgba(110,255,190,.1);border-radius:18px;padding:18px}.panel h3{margin:0 0 15px}.calendar{background:rgba(9,25,20,.7);border:1px solid rgba(110,255,190,.1);border-radius:18px;overflow:hidden}.calhead{display:flex;justify-content:space-between;padding:18px;border-bottom:1px solid rgba(110,255,190,.1)}.days{display:grid;grid-template-columns:repeat(5,1fr);min-height:660px}.day{position:relative;border-left:1px solid rgba(110,255,190,.07)}.day:last-child{border-left:0}.dayhead{height:80px;padding:14px;text-align:center;border-bottom:1px solid rgba(110,255,190,.07)}.dayhead b{display:block;font-size:24px}.time{position:absolute;top:88px;right:5px;left:5px;height:530px;background:repeating-linear-gradient(to bottom,transparent 0,transparent 104px,rgba(110,255,190,.06) 105px,transparent 106px)}.post{position:absolute;right:10px;left:10px;background:linear-gradient(180deg,rgba(33,83,66,.98),rgba(18,52,41,.98));border:1px solid rgba(68,235,153,.4);border-radius:14px;overflow:hidden;box-shadow:0 12px 35px rgba(0,0,0,.25)}.post img{width:100%;height:105px;object-fit:cover;display:block}.postbody{padding:10px}.post .time2{font-size:11px;color:#8ee9bc}.post strong{display:block;font-size:12px;margin:5px 0}.tag{font-size:10px;color:#9becc4}.ai{background:linear-gradient(145deg,rgba(68,60,31,.9),rgba(20,48,38,.95));border:1px solid rgba(215,190,82,.35);border-radius:18px;padding:18px}.ai h3{color:#ead66e}.field{margin:13px 0}.field label{display:block;color:#91a59d;font-size:12px;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;background:#0a1713;color:#fff;border:1px solid #2a4137;border-radius:10px;padding:11px;outline:none}.field textarea{min-height:100px}.row{display:flex;gap:9px;flex-wrap:wrap}.toast{position:fixed;bottom:22px;left:22px;background:#1d2d26;border:1px solid #35df91;padding:13px 16px;border-radius:12px;display:none;z-index:10}
+@media(max-width:1000px){.sidebar{width:220px}.main{margin-right:220px}.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.sidebar{display:none}.main{margin-right:0;padding:15px}.stats{grid-template-columns:1fr}.days{grid-template-columns:repeat(2,1fr);overflow:auto}.day:nth-child(n+3){display:none}.topbar{height:auto;gap:12px;align-items:flex-start;flex-direction:column}.top-actions{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+<div class="brand"><div class="brandmark">MH</div><div><h2>MH Instagram</h2><small>Content Manager</small></div></div>
+<div class="nav">
+<button class="active" onclick="page('home')">⌂　الرئيسية</button>
+<button onclick="page('calendar')">▣　جدولة المحتوى</button>
+<button onclick="page('create')">✦　إنشاء محتوى</button>
+<button onclick="page('posts')">▤　المنشورات</button>
+<button onclick="page('analytics')">▥　الإحصائيات</button>
+<button onclick="page('accounts')">◎　الحسابات</button>
+<button onclick="page('settings')">⚙　الإعدادات</button>
+</div>
+<div class="sidecard">
+<h3>⚡ الأتمتة الذكية</h3>
+<div class="switchrow">النشر التلقائي <span class="switch on" onclick="toggle(this)"><i></i></span></div>
+<div class="switchrow">توليد محتوى AI <span class="switch on" onclick="toggle(this)"><i></i></span></div>
+<div class="switchrow">أفضل وقت للنشر <span class="switch on" onclick="toggle(this)"><i></i></span></div>
+</div>
+</aside>
+
+<main class="main">
+<div class="topbar">
+<div class="accounts"><div class="account active">◎ MH.official <span>●</span></div><div class="account">◎ mh.webs</div><div class="account">◎ mh.design</div><div class="account">＋</div></div>
+<div class="top-actions"><button class="pill">✦ مساعد الذكاء</button><button class="pill">🔔</button><button class="pill">◉</button></div>
+</div>
+
+<section id="home" class="page active">
+<div class="heading"><div><h1>إدارة المحتوى</h1><div class="muted">نظّم حساباتك ومحتواك من لوحة واحدة</div></div><button class="primary" onclick="page('create')">＋ إنشاء منشور</button></div>
+<div class="stats"><div class="stat">منشورات هذا الشهر<div class="n" id="c1">7</div></div><div class="stat">مجدولة<div class="n">5</div></div><div class="stat">نمو المتابعين<div class="n">+12.8%</div></div><div class="stat">التفاعل<div class="n">8.4%</div></div></div>
+<div class="layout" style="margin-top:18px">
+<div class="panel"><h3>AI Agent</h3><p class="muted">أنشئ منشورات وتصاميم تلقائيًا بناءً على مجال حسابك.</p><div class="ai"><h3>✦ محتوى ذكي</h3><p class="muted">البوت يقترح الفكرة والكابشن والوقت المناسب.</p><button class="primary" onclick="generate()">✦ توليد محتوى الآن</button></div></div>
+<div class="panel"><h3>جدولة هذا الأسبوع</h3><div class="muted">تم إعداد 7 منشورات عبر الحسابات المتصلة.</div></div>
+</div>
+</section>
+
+<section id="calendar" class="page">
+<div class="heading"><div><h1>جدولة المحتوى</h1><div class="muted">أغسطس 2026</div></div><div class="row"><button class="ghost">اليوم</button><button class="ghost">أسبوعي</button><button class="primary">شهري</button></div></div>
+<div class="layout">
+<div class="panel"><h3>إعدادات النشر</h3>
+<div class="field"><label>الحساب</label><select><option>MH.official</option><option>mh.webs</option><option>mh.design</option></select></div>
+<div class="field"><label>معدل النشر</label><select><option>يومي</option><option>3× أسبوعيًا</option><option>مخصص</option></select></div>
+<div class="field"><label>المنطقة الزمنية</label><select><option>مسقط — GMT+4</option></select></div>
+<div class="switchrow">النشر التلقائي <span class="switch on"><i></i></span></div>
+<div class="switchrow">توليد محتوى بالذكاء الاصطناعي <span class="switch on"><i></i></span></div>
+<div class="ai"><h3>✦ AI Agent</h3><p class="muted">أنشئ محتوى الأسبوع القادم تلقائيًا.</p><button class="primary" onclick="generate()">توليد المحتوى</button></div>
+</div>
+<div class="calendar"><div class="calhead"><b>أغسطس 2026</b><span class="muted">الأحد — الخميس</span></div><div class="days">
+<div class="day"><div class="dayhead"><b>14</b>الأحد</div><div class="time"></div><article class="post" style="top:155px"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80"><div class="postbody"><small>09:00</small><strong>تفاصيل التصميم تفرق...</strong><span class="tag">#سيارات</span></div></article></div>
+<div class="day"><div class="dayhead"><b>15</b>الاثنين</div><div class="time"></div><article class="post" style="top:355px"><img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=600&q=80"><div class="postbody"><small>11:00</small><strong>قهوة MH اليومية...</strong><span class="tag">#قهوة</span></div></article></div>
+<div class="day"><div class="dayhead"><b>16</b>الثلاثاء</div><div class="time"></div><article class="post" style="top:95px"><img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80"><div class="postbody"><small>09:00</small><strong>عطر يجسد الفخامة...</strong><span class="tag">#عطور</span></div></article></div>
+<div class="day"><div class="dayhead"><b>17</b>الأربعاء</div><div class="time"></div><article class="post" style="top:310px"><img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80"><div class="postbody"><small>10:00</small><strong>روتين تمرين الصدر...</strong><span class="tag">#رياضة</span></div></article></div>
+<div class="day"><div class="dayhead"><b>18</b>الخميس</div><div class="time"></div><article class="post" style="top:145px"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80"><div class="postbody"><small>09:30</small><strong>برجر الحارة...</strong><span class="tag">#برجر</span></div></article></div>
+</div></div>
+</div>
+</section>
+
+<section id="create" class="page">
+<div class="heading"><div><h1>إنشاء محتوى بالذكاء الاصطناعي</h1><div class="muted">دع البوت يقترح الفكرة والكابشن والتصميم</div></div></div>
+<div class="layout"><div class="panel"><h3>إعداد المحتوى</h3><div class="field"><label>مجال الحساب</label><input id="niche" value="تصميم المواقع والخدمات الرقمية"></div><div class="field"><label>نوع المنشور</label><select id="ctype"><option>تعليمي</option><option>إعلاني</option><option>ترويجي</option><option>نصيحة</option></select></div><div class="field"><label>نبرة الكتابة</label><select><option>احترافية</option><option>فخمة</option><option>شبابية</option><option>مختصرة</option></select></div><button class="primary" onclick="generate()">✦ إنشاء المنشور</button></div>
+<div class="panel"><h3>المخرجات</h3><div id="output" class="muted">اضغط إنشاء المنشور لتوليد فكرة.</div></div></div>
+</section>
+
+<section id="posts" class="page"><div class="panel"><h2>المنشورات</h2><div class="muted">منشورات الحساب وحالتها</div><div id="postList" style="margin-top:15px"></div></div></section>
+<section id="analytics" class="page"><div class="stats"><div class="stat">الوصول<div class="n">24.8K</div></div><div class="stat">الإعجابات<div class="n">3,241</div></div><div class="stat">التعليقات<div class="n">418</div></div><div class="stat">المتابعون<div class="n">+682</div></div></div></section>
+<section id="accounts" class="page"><div class="panel"><h2>الحسابات المتصلة</h2><p class="muted">MH.official — متصل</p><p class="muted">mh.webs — جاهز للربط</p><p class="muted">mh.design — جاهز للربط</p><button class="primary">＋ إضافة حساب Instagram</button></div></section>
+<section id="settings" class="page"><div class="panel"><h2>الإعدادات</h2><p class="muted">النشر الحقيقي يحتاج ربط Meta OAuth وInstagram API. لا تحفظ كلمة مرور Instagram داخل الموقع.</p><button class="primary">إعداد الربط</button></div></section>
+</main></div>
+<div id="toast" class="toast"></div>
+<script>
+const ids=['home','calendar','create','posts','analytics','accounts','settings'];
+function page(id){ids.forEach(x=>document.getElementById(x).classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.getAttribute('onclick').includes("'"+id+"'")))}
+function toggle(el){el.classList.toggle('on')}
+function toast(t){let x=document.getElementById('toast');x.textContent=t;x.style.display='block';setTimeout(()=>x.style.display='none',2500)}
+function generate(){
+let niche=document.getElementById('niche')?.value||'الخدمات الرقمية';
+let ideas=[`5 أشياء يجب أن تعرفها عن ${niche}`,`كيف تختار أفضل خدمة في ${niche}؟`,`3 أخطاء تجعل مشروعك يخسر فرصًا في ${niche}`];
+let title=ideas[Math.floor(Math.random()*ideas.length)];
+let caption=`هل تريد تطوير مشروعك في ${niche}؟ في هذا المنشور نوضح لك أهم النقاط التي تساعدك على اتخاذ قرار أفضل. احفظ المنشور وشاركه مع شخص قد يستفيد منه.`;
+let hashtags=`#MH #عمان #${niche.replaceAll(' ','_')} #مشروعك #تسويق`;
+let out=document.getElementById('output'); if(out) out.innerHTML=`<h3>${title}</h3><p>${caption}</p><p class="muted">${hashtags}</p><div class="row"><button class="primary" onclick="toast('تمت إضافة المنشور إلى الجدولة')">＋ جدولة</button><button class="ghost" onclick="toast('تم حفظ الفكرة')">حفظ الفكرة</button></div>`;
+toast('تم توليد محتوى جديد');
+}
+document.getElementById('postList').innerHTML=['عطر يجسد الفخامة','تفاصيل التصميم تفرق','3 نصائح لتطوير مشروعك','قوة المحتوى البصري'].map((x,i)=>`<div class="post"><strong>${x}</strong><div class="muted">MH.official　•　${i+1} منشور هذا الأسبوع</div><span class="tag">مجدول</span></div>`).join('');
+</script>
+</body></html>
